@@ -18,7 +18,7 @@ const GoogleRedirect = () => {
 
       //토큰이 생성되면 홈화면으로 이동
       if(token){
-        navigate("/")
+        navigate("/home")
       }else{
         alert("Access Token이 없습니다.")
       }

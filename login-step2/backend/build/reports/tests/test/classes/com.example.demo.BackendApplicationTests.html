@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.513s</div>
+<div class="counter">0.619s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,7 +82,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">0.513s</td>
+<td class="success">0.619s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -90,8 +90,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>12:24:35.697 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.demo.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-12:24:35.794 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.demo.BackendApplication for test class com.example.demo.BackendApplicationTests
+<pre>16:40:58.535 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.demo.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:40:58.660 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.demo.BackendApplication for test class com.example.demo.BackendApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -102,9 +102,17 @@
 
  :: Spring Boot ::                (v3.5.9)
 
-2026-01-13T12:24:36.205+09:00  INFO 2228 --- [    Test worker] c.example.demo.BackendApplicationTests   : Starting BackendApplicationTests using Java 21.0.9 with PID 2228 (started by kosmo in D:\makcoding\08Spring-Security\OAuth-Login\login-step1\backend)
-2026-01-13T12:24:36.206+09:00  INFO 2228 --- [    Test worker] c.example.demo.BackendApplicationTests   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2026-01-13T12:24:37.346+09:00  INFO 2228 --- [    Test worker] c.example.demo.BackendApplicationTests   : Started BackendApplicationTests in 1.406 seconds (process running for 2.426)
+?[32m16:40:59.141?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.e.d.BackendApplicationTests:53?[0;39m-Starting BackendApplicationTests using Java 21.0.9 with PID 11904 (started by kosmo in D:\makcoding\08Spring-Security\OAuth-Login\login-step2\backend)
+?[32m16:40:59.142?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.e.d.BackendApplicationTests:652?[0;39m-No active profile set, falling back to 1 default profile: &quot;default&quot;
+?[32m16:40:59.930?[0;39m ?[34mWARN ?[0;39m ?[31m[Test worker]?[0;39m ?[33mo.m.s.m.ClassPathMapperScanner:44?[0;39m-No MyBatis mapper was found in '[com.example.demo]' package. Please check your configuration.
+?[32m16:41:00.315?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.z.h.HikariDataSource:79?[0;39m-oraPool - Starting...
+?[32m16:41:00.593?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.z.h.p.HikariPool:580?[0;39m-oraPool - Added connection oracle.jdbc.driver.T4CConnection@255d9277
+?[32m16:41:00.595?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.z.h.HikariDataSource:81?[0;39m-oraPool - Start completed.
+?[32m16:41:00.598?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.e.d.c.DatabaseConfiguration:37?[0;39m-datasource : HikariDataSource (oraPool)
+?[32m16:41:00.891?[0;39m ?[34mTRACE?[0;39m ?[31m[Test worker]?[0;39m ?[33mo.s.s.c.a.a.c.AuthenticationConfiguration$EnableGlobalAuthenticationAutowiredConfigurer:215?[0;39m-Eagerly initializing {org.springframework.boot.autoconfigure.security.servlet.SpringBootWebSecurityConfiguration$WebSecurityEnablerConfiguration=org.springframework.boot.autoconfigure.security.servlet.SpringBootWebSecurityConfiguration$WebSecurityEnablerConfiguration@5e51ec2e}
+?[32m16:41:00.894?[0;39m ?[34mDEBUG?[0;39m ?[31m[Test worker]?[0;39m ?[33mo.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder:234?[0;39m-No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+?[32m16:41:01.147?[0;39m ?[34mDEBUG?[0;39m ?[31m[Test worker]?[0;39m ?[33mo.s.s.w.DefaultSecurityFilterChain:72?[0;39m-Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+?[32m16:41:01.465?[0;39m ?[34mINFO ?[0;39m ?[31m[Test worker]?[0;39m ?[33mc.e.d.BackendApplicationTests:59?[0;39m-Started BackendApplicationTests in 2.654 seconds (process running for 3.863)
 </pre>
 </span>
 </div>
@@ -127,7 +135,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2026. 1. 13. 오후 12:24:37</p>
+<a href="https://www.gradle.org">Gradle 8.14.3</a> at 2026. 1. 14. 오후 4:41:02</p>
 </div>
 </div>
 </body>
