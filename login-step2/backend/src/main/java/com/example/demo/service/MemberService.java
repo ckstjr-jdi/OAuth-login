@@ -30,4 +30,11 @@ public class MemberService {
         return pmVO;
     }
 
+    public int memberInsert(MemberVO memberVO) {
+        log.info("memberInsert");
+        log.info("memberVO:{}", memberVO);
+        int result = -1;
+        result = memberDao.memberInsert(memberVO);
+        return result;
+    }
 }

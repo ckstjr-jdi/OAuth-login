@@ -23,10 +23,21 @@ import java.util.Map;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
-    // http://localhost:8000/member/google/doLogin
-    // 파라미터로 사용되는 @RequstMapping
+    //GoogleService의존성 주입
     private final GoogleService googleService;//주의:null초기화 하지 않음
     private final MemberService memberService;
+
+    // http://localhost:8000/member/memberInsert
+    @PostMapping("/memberInsert")
+    public ResponseEntity<?> memberInsert(@RequestBody MemberVO memberVO){
+        int result = -1;
+        result = memberService.memberInsert(memberVO);
+        //return new ResponseEntity<>(result, HttpStatus.CREATED)
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }//end of memberInsert
+
+    // http://localhost:8000/member/google/doLogin
+    // 파라미터로 사용되는 @RequstMapping
     @PostMapping("/google/doLogin")
     public ResponseEntity<?> googleLogin(@RequestBody RedirectDto redirectDto){
         log.info("googleLogin");
