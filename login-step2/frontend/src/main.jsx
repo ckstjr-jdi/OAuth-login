@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginView />} />
-        <Route path="/loginForm" element={<JoinPage />} />
+        <Route path="/joinForm" element={<JoinPage />} />
         <Route path="/oauth/google/redirect" element={<GoogleRedirect />} />
         <Route path="/oauth/kakao/redirect" element={<KakaoRedirect />} />
         <Route path="/*" element={

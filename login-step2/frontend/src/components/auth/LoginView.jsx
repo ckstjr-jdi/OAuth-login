@@ -42,7 +42,7 @@ const LoginView = () => {
     const loginK = async () => {
         console.log('카카오로그인');
         const kakaoUrl = "https://kauth.kakao.com/oauth/authorize"
-        const kakaoClientID = "0ea145aeb7afb9aea3b51a52dbb503f4"
+        const kakaoClientID = `${import.meta.env.VITE_KAKAO_CLIENTID}`
         const kakaoRedirectUrl = "http://localhost:5173/oauth/kakao/redirect"
         try{
             const auth_uri = `${kakaoUrl}?client_id=${kakaoClientID}&redirect_uri=${kakaoRedirectUrl}&response_type=code`
@@ -108,7 +108,7 @@ const LoginView = () => {
         <KakaoButton type="button" onClick={loginK}>
             <span style={{color: "red", fontSize: "18px"}}></span>&nbsp;&nbsp;Kakao 로그인
         </KakaoButton>
-        <MyP style={{marginTop:"10px"}}>신규 사용자이신가요?&nbsp;<Link to="/auth/signup" className="text-decoration-none" style={{color: "blue"}}>계정 만들기</Link></MyP>
+        <MyP style={{marginTop:"10px"}}>신규 사용자이신가요?&nbsp;<Link to="/joinForm" className="text-decoration-none" style={{color: "blue"}}>계정 만들기</Link></MyP>
         <MyP>이메일를 잊으셨나요?&nbsp;<Link to="/login/findEmail" className="text-decoration-none" style={{color: "blue"}}>이메일 찾기</Link></MyP>
         <MyP>비밀번호를 잊으셨나요?&nbsp;<Link to="/login/resetPwd" className="text-decoration-none" style={{color: "blue"}}>비밀번호 변경</Link></MyP>
         </LoginForm>      
