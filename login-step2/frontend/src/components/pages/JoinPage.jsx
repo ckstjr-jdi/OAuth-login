@@ -20,10 +20,10 @@ const JoinPage = () => {
     })
   }//end of handleChange
   //사용자가 4가지 정보를 입력한 뒤 회원가입 버튼을 누르면 
-  //-> http:/localhost:8000/member/memberInsert
+  //-> http://localhost:8000/member/memberInsert
   const handleSignup = async() => {
     try{
-      const response = await axios.post(`${import.meta.env.VITE_SPRING_IP}member/memberInsert`)
+    const response = await axios.post(`${import.meta.env.VITE_SPRING_IP}member/memberInsert`,formData)
       //서버에서 응답으로 받는 값이 1이면 등록 성공, 0이면 등록 실패
       console.log(response)
       navigate('/login')

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.GoogleProfileDto;
+import com.example.demo.dto.MemberLoginDto;
 import com.example.demo.dto.RedirectDto;
 import com.example.demo.model.AccessTokenVO;
 import com.example.demo.model.MemberVO;
@@ -36,9 +37,21 @@ public class MemberController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }//end of memberInsert
 
-    // http://localhost:8000/member/google/doLogin
-    // 파라미터로 사용되는 @RequstMapping
-    @PostMapping("/google/doLogin")
+    // http://localhost:8000/member/doLogin
+    @PostMapping("/doLogin")
+    public ResponseEntity<?> doLogin(@RequestBody MemberLoginDto memDto){
+        MemberVO memberVO = memberService.login(memDto);
+        String jwtToken = null;//TODO - 토큰 프로바이더 추가
+        Map<String, Object> loginInfo = new HashMap<>();
+        loginInfo.put("id", 17);
+        loginInfo.put("token", jwtToken);
+        return new ResponseEntity<>(loginInfo, HttpStatus.OK);
+    }//end of doLogin
+
+
+     // http://localhost:8000/member/google/doLogin
+     // 파라미터로 사용되는 @RequstMapping
+     @PostMapping("/google/doLogin")
     public ResponseEntity<?> googleLogin(@RequestBody RedirectDto redirectDto){
         log.info("googleLogin");
         // 1.프론트에서 넘어온 인가 코드(code)를 받는 API
