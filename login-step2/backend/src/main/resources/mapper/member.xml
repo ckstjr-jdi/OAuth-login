@@ -3,18 +3,18 @@
 <mapper namespace="com.example.demo.memberMapper">
     <insert id="memberInsert" parameterType="com.example.demo.model.MemberVO">
         insert into member202601(id,username,password
-                                 ,email,role,createDate, socialId, socialType)
+        ,email,role,createDate, socialid, socialtype)
         values(seq_member202601_no.nextval,#{username},#{password},#{email}
-            ,#{role},to_char(sysdate,'YYYY-MM-DD'), #{socialId, jdbcType=VARCHAR}
-            ,#{socialType,jdbcType=VARCHAR})
+        ,#{role},to_char(sysdate,'YYYY-MM-DD'),#{socialId,jdbcType=VARCHAR}
+        ,#{socialType,jdbcType=VARCHAR} )
     </insert>
-    <select id ="getMemberDetail" parameterType="com.example.demo.model.MemberVO" resultType="com.example.demo.model.MemberVO">
+    <select id="getMemberDetail" parameterType="com.example.demo.model.MemberVO" resultType="com.example.demo.model.MemberVO">
         SELECT id, username, password, email, role, socialType, socialId
-          FROM member202601
-         WHERE socialId = ${socialId}
+        FROM member202601
+        WHERE socialId = ${socialId}
     </select>
-    <select id="findByEmail" resultType="com.example.demo.model.MemberVO">
-        SELECT * FROM member
+    <select id="getMemberEmail" resultType="com.example.demo.model.MemberVO" parameterType="com.example.demo.dto.MemberLoginDto">
+        SELECT id, username, password, email, role, socialType, socialId  FROM member202601
         WHERE email = #{email}
     </select>
     <select id="login" parameterType="string" resultType="com.example.demo.model.MemberVO">

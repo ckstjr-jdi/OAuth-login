@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { DividerDiv, DividerHr, DividerSpan, GoogleButton, KakaoButton, LoginForm, MyH1, MyInput, MyLabel, MyP, PwEye, SubmitButton } from '../styles/FormStyles'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const LoginView = () => {
+    const navigate = useNavigate()
     const [tempUser, setTempUser] = useState({
         email: '',
         password:''
@@ -42,7 +44,7 @@ const LoginView = () => {
     const loginK = async () => {
         console.log('카카오로그인');
         const kakaoUrl = "https://kauth.kakao.com/oauth/authorize"
-        const kakaoClientID = `${import.meta.env.VITE_KAKAO_CLIENTID}`
+        const kakaoClientID = `${import.meta.env.VITE_KAKAO_CLIENTID}` //rest api key
         const kakaoRedirectUrl = "http://localhost:5173/oauth/kakao/redirect"
         try{
             const auth_uri = `${kakaoUrl}?client_id=${kakaoClientID}&redirect_uri=${kakaoRedirectUrl}&response_type=code`
@@ -52,6 +54,7 @@ const LoginView = () => {
         }
     };
     
+
     const passwordView =(e) => {
         const id = e.currentTarget.id 
         if(id === "password"){
@@ -76,19 +79,29 @@ const LoginView = () => {
             setSubmitBtn({...submitBtn, hover:true, bgColor:'rgb(58,129,200)'})
         }
     }    
-    const loginE = () => {
-        
+    const loginE = async() => {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_SPRING_IP}member/doLogin`,tempUser)
+            console.log(response.data)
+            window.localStorage.setItem("id", response.data.id)
+            window.localStorage.setItem("token", response.data.token)
+            window.localStorage.setItem("username", response.data.username)
+            window.localStorage.setItem("email", response.data.email)
+            navigate("/home")
+        } catch (error) {
+            console.error("로그인 실패", error)
+        }
     }    
   return (
     <>
         <LoginForm>
         <MyH1>로그인</MyH1>
         <MyLabel htmlFor="email"> 이메일     
-            <MyInput type="email" id="mem_email" name="mem_email" placeholder="이메일를 입력해주세요." 
+            <MyInput type="email" id="email" name="email" placeholder="이메일를 입력해주세요." 
             onChange={(e)=>changeUser(e)}/>   
         </MyLabel>
         <MyLabel htmlFor="password"> 비밀번호
-            <MyInput type={passwordType.type} autoComplete="off" id="mem_pw" name="mem_password" placeholder="비밀번호를 입력해주세요."
+            <MyInput type={passwordType.type} autoComplete="off" id="password" name="password" placeholder="비밀번호를 입력해주세요."
             onChange={(e)=>changeUser(e)}/>
             <div id="password" onClick={(e)=> {passwordView(e)}} style={{color: `${passwordType.visible?"gray":"lightgray"}`}}>
             <PwEye className="fa fa-eye fa-lg"></PwEye>

@@ -9,10 +9,7 @@ const KakaoRedirect = () => {
   useEffect(() => {
     const kakaoLogin = async () => {
       try {
-        const response = await axios.post(
-          'http://localhost:8000/member/kakao/doLogin',
-          { code }
-        )
+        const response = await axios.post(`${import.meta.env.VITE_SPRING_IP}member/kakao/doLogin`,{ code:code })
         console.log(response)
       } catch (error) {
         console.error('카카오 로그인 실패', error)

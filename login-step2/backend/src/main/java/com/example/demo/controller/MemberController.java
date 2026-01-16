@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.JwtTokenProvider;
 import com.example.demo.dto.GoogleProfileDto;
 import com.example.demo.dto.MemberLoginDto;
 import com.example.demo.dto.RedirectDto;
 import com.example.demo.model.AccessTokenVO;
 import com.example.demo.model.MemberVO;
 import com.example.demo.service.GoogleService;
+import com.example.demo.service.KakaoService;
 import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,8 +26,10 @@ import java.util.Map;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
+    private final JwtTokenProvider jwtTokenProvider;
     //GoogleService의존성 주입
     private final GoogleService googleService;//주의:null초기화 하지 않음
+    private final KakaoService kakaoService;
     private final MemberService memberService;
 
     // http://localhost:8000/member/memberInsert
@@ -41,10 +45,15 @@ public class MemberController {
     @PostMapping("/doLogin")
     public ResponseEntity<?> doLogin(@RequestBody MemberLoginDto memDto){
         MemberVO memberVO = memberService.login(memDto);
+        log.info("memberVO:{}", memberVO);
         String jwtToken = null;//TODO - 토큰 프로바이더 추가
+        jwtToken = jwtTokenProvider.createToken(memberVO.getEmail(), memberVO.getRole());
         Map<String, Object> loginInfo = new HashMap<>();
         loginInfo.put("id", 17);
         loginInfo.put("token", jwtToken);
+        loginInfo.put("role", memberVO.getRole());
+        loginInfo.put("email", memberVO.getEmail());
+        loginInfo.put("username", memberVO.getUsername());
         return new ResponseEntity<>(loginInfo, HttpStatus.OK);
     }//end of doLogin
 
@@ -90,6 +99,7 @@ public class MemberController {
     public ResponseEntity<?> kakaoLogin(@RequestBody RedirectDto redirectDto){
         log.info("doLogin");
         log.info("redirectDto:{}",redirectDto.getCode());
+        AccessTokenVO accessTokenVO = kakaoService.getAccessToken(redirectDto.getCode());
         return new ResponseEntity<>(redirectDto, HttpStatus.OK);
     }//end of doLogin
 }
